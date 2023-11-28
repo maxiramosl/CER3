@@ -2,33 +2,44 @@
 
 <div class="row" style = "padding: 10px;" id="combo">
     <div class="col-6">    
-    <form method="GET" >
-      <select name="Entidad" class="form-select " style="margin-bottom: 30px;" >
+    <form method="GET" action="{%url 'index'%}" >
+      <select name="Segmento" class="form-select " style="margin-bottom: 30px;" onchange="this.form.submit()">
     
-        <option value="Segmento" selected>
+        <option value="Segmento" {% if segmento_filtro == Segmento%} selected {%endif%}>
           Segmento
         </option>
-    
+        {% for segmento in segmentos %}
+        
+        <option value={{segmento.nombre}} {% if segmento_filtro == segmento.nombre%} selected {%endif%}>
+
+        {{segmento.nombre}}
+        </option>
+        {% endfor %}
+
       </select>
-        
-      
-    </form>
-    </div>
-       
+
+  </div>
     <div class="col-6">    
-        <form method="GET" >
-          <select name="Entidad" class="form-select " style="margin-bottom: 30px;" >
-        
-            <option value="Tipos" selected>
-              Tipos
-            </option>
-        
-          </select>
-            
+     
+        <select name="Tipo" class="form-select " style="margin-bottom: 30px;" onchange="this.form.submit()">
+      
+          <option value="Tipo" {% if evento_filtro == Evento %} selected {%endif%}>
+            Tipo
+          </option>
+          {% for evento in eventos %}
           
-        </form>
-        </div>
+          <option value={{evento.tipo}} {% if evento_filtro == evento.titulo%} selected {%endif%}>
+  
+          {{evento.titulo}}
+          </option>
+          {% endfor %}
+        </select>
+     
+    </div>
+  </form>
 </div>
+
+<!-- ACTIVIDADES -->
 <div class="row" style="padding-top: 10px;">
 <h1 style="text-align: center;" class="border">ACTIVIDADES</h1>
 </div>
@@ -42,59 +53,17 @@
 
 </div>
 <!--aqui abajo va a tener que haber un for en el futuro-->
+{% for evento in eventos  %}
+
 <div class="row" style="padding-top: 2px;">
 
-    <div class="col-3 border">1</div>
-    <div class="col-1 border">2</div>
-    <div class="col-2 border">3</div>
-    <div class="col-3 border">4</div>
-    <div class="col-3 border">5</div>
-    
-</div>
-<div class="row" style="padding-top: 2px;">
-
-    <div class="col-3 border">1</div>
-    <div class="col-1 border">2</div>
-    <div class="col-2 border">3</div>
-    <div class="col-3 border">4</div>
-    <div class="col-3 border">5</div>
-    
-</div>
-<div class="row" style="padding-top: 2px;">
-
-    <div class="col-3 border">1</div>
-    <div class="col-1 border">2</div>
-    <div class="col-2 border">3</div>
-    <div class="col-3 border">4</div>
-    <div class="col-3 border">5</div>
-    
-</div>
-<div class="row" style="padding-top: 2px;">
-
-    <div class="col-3 border">1</div>
-    <div class="col-1 border">2</div>
-    <div class="col-2 border">3</div>
-    <div class="col-3 border">4</div>
-    <div class="col-3 border">5</div>
-    
-</div>
-<div class="row" style="padding-top: 2px;">
-
-    <div class="col-3 border">1</div>
-    <div class="col-1 border">2</div>
-    <div class="col-2 border">3</div>
-    <div class="col-3 border">4</div>
-    <div class="col-3 border">5</div>
-    
-</div>
-<div class="row" style="padding-top: 2px;">
-
-    <div class="col-3 border">1</div>
-    <div class="col-1 border">2</div>
-    <div class="col-2 border">3</div>
-    <div class="col-3 border">4</div>
-    <div class="col-3 border">5</div>
+    <div class="col-3 border">{{evento.titulo}}</div>
+    <div class="col-1 border">{{evento.fecha_inicio}}</div>
+    <div class="col-2 border">{{evento.fecha_termino}}</div>
+    <div class="col-3 border">{{evento.tipo}}</div>
+    <div class="col-3 border">{{evento.segmento}}</div>
     
 </div>
 
-
+{% endfor %}
+</div>
