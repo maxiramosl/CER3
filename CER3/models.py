@@ -30,6 +30,8 @@ class UsuarioSegmento(models.Model):
     segmento=models.ForeignKey(Segmento, on_delete=models.CASCADE)
     def getSegmento(self) ->str:
         return self.segmento
+    def __str__(self) -> str:
+        return str(self.usuarios.username)+" es un "+str(self.segmento)
     
 
     

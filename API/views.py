@@ -9,20 +9,21 @@ from rest_framework.filters import SearchFilter
 
 class permiso(permissions.BasePermission):
     def has_permission(self, request, view):
-        if (request.user.username!="admin"):
+        if(request.user.is_anonymous==True):
+            return False
+        elif(request.user.is_superuser==True):
+            return True
+        else:
             relacion=UsuarioSegmento.objects.get(usuarios=request.user)
             if relacion.segmento.nombre=="desarrollador":
                return True
             else :
                return False
-        else:
-            return True
+        
 
         
         
-
-            
-
+    
 
 class EventoViewSet(viewsets.ModelViewSet):
     queryset = Evento.objects.all().order_by('fecha_inicio')

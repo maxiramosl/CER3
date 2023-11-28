@@ -23,20 +23,20 @@
      
         <select name="Tipo" class="form-select " style="margin-bottom: 30px;" onchange="this.form.submit()">
       
-          <option value="Tipo" {% if evento_filtro == 'Tipo' %} selected {%endif%}>
+          <option value="Tipo" {% if tipo_filtro == 'Tipo' %} selected {%endif%}>
             Tipo
           </option>
-          {% for evento in eventos %}
-          
-          <option value={{evento.tipo}} {% if evento_filtro == evento.titulo%} selected {%endif%}>
-  
-          {{evento.titulo}}
+
+          {% for tipo in tipos %}
+
+          <option value={{tipo.nombre}} {% if tipo_filtro == tipo.nombre%} selected {%endif%}>
+
+          {{tipo.nombre}}
           </option>
           {% endfor %}
+
         </select>
-     
     </div>
-    
   </form>
 </div>
 
