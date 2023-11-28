@@ -6,6 +6,38 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
+#github{
+  margin: 20px;
+  color: #FFF;
+  dero: none;
+
+}
+footer{
+  background-color: #d60019;
+  color: #FFF;
+  text-align: center;
+}
+.navhtml{
+  background-color: #004b85;
+  color: #fff;
+}
+.actividades{
+  margin-top: 20px;
+  background-color: #008452;
+  color: #fff;
+
+}
+.botonnav, .li{
+  background-color: #f7ae00; /* Green */
+  border: none;
+  color: white;
+  padding: 15px ;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 15px;
+}
 .calendario{
   display: flex;
   align-items: center;

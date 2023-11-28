@@ -1,40 +1,41 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Evento, Segmento, Usuario
+from .models import Evento, Segmento
 
 
 # Create your views here.
 def index(request):
     title = "Inicio"
-    evento = Evento.objects.all()
-    segmento = Segmento.objects.all()
-    usuario = Usuario.objects.all()
+    eventos = Evento.objects.all()
+    segmentos = Segmento.objects.all()
     segmento_filtro = request.GET.get("Segmento")
     evento_filtro = request.GET.get("Tipo")
-    #los 2 estan en default
-    if((segmento_filtro == 'Segmento' or segmento_filtro is None) and (evento_filtro == 'Tipo' or evento_filtro is None)):
-        segmento = Segmento.objects.all()
+    print(segmento_filtro)
+    
+    print(evento_filtro)
+    
+    if (evento_filtro == 'Tipo' or evento_filtro == None) and (segmento_filtro == 'Segmento' or segmento_filtro == None):
         evento = Evento.objects.all()
-    #el combobox segmento esta en segmento pero el evento no
-    elif((segmento_filtro == 'Segmento' or segmento_filtro is None) and (evento_filtro != 'Tipo' or evento_filtro is not None)):
-        segmento = Segmento.objects.all()
-        evento_filtrado = Evento.objects.get(titulo = evento_filtro)
-        evento_filtro = Evento.objects.filter(Evento = evento_filtrado)
-    #el combobox de evento esta en defualt pero de segmento no
-    elif((segmento_filtro != 'Segmento' or segmento_filtro is not None) and (evento_filtro == 'Tipo' or evento_filtro is None)):
-        segmento_filtrado = Segmento.objects.get(nombre = segmento_filtro)
-        segmento_filtro = Segmento.objects.filter(Segmento = segmento_filtrado)
-        evento = Evento.objects.all()
-    elif((segmento_filtro != 'Segmento' or segmento_filtro is not None) and (evento_filtro != 'Tipo' or evento_filtro is not None)):
-        evento_filtrado = Evento.objects.get(titulo = evento_filtro)
-        evento_filtro = Evento.objects.filter(Evento = evento_filtrado)
-        segmento_filtrado = Segmento.objects.get(nombre = segmento_filtro)
-        segmento_filtro = Segmento.objects.filter(Segmento = segmento_filtrado)
+    elif(evento_filtro == 'Tipo' or evento_filtro == None) and (segmento_filtro != 'Segmento'):
+        lista = []
+        for evento in eventos:
+            hit = False
+            for segmento in evento.segmento.all:
+                if segmento==segmento_filtro:
+                    hit =True
+            if hit:
+                evento.hit = 1
+    
+    
+        
 
+
+        
+        eventos = Evento.object.filter(hit ==1)
 
     data = {
-        "segmentos":segmento,
-        "eventos":evento,
+        "segmentos":segmentos,
+        "eventos":eventos,
         "segmento_filtro":segmento_filtro,
         "evento_filtro":evento_filtro,
         "title":title

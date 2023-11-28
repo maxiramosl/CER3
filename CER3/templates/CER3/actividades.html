@@ -5,7 +5,7 @@
     <form method="GET" action="{%url 'index'%}" >
       <select name="Segmento" class="form-select " style="margin-bottom: 30px;" onchange="this.form.submit()">
     
-        <option value="Segmento" {% if segmento_filtro == Segmento%} selected {%endif%}>
+        <option value="Segmento" {% if segmento_filtro == 'Segmento'%} selected {%endif%}>
           Segmento
         </option>
         {% for segmento in segmentos %}
@@ -23,7 +23,7 @@
      
         <select name="Tipo" class="form-select " style="margin-bottom: 30px;" onchange="this.form.submit()">
       
-          <option value="Tipo" {% if evento_filtro == Evento %} selected {%endif%}>
+          <option value="Tipo" {% if evento_filtro == 'Tipo' %} selected {%endif%}>
             Tipo
           </option>
           {% for evento in eventos %}
@@ -36,6 +36,7 @@
         </select>
      
     </div>
+    
   </form>
 </div>
 
@@ -45,9 +46,9 @@
 </div>
 <div class="row" style="padding-top: 5px;">
 
-<div class="col-3 border">Hito</div>
-<div class="col-1 border">FechaInicio</div>
-<div class="col-2 border">FechaTermino</div>
+<div class="col-2 border">Hito</div>
+<div class="col-2 border">Fecha Inicio</div>
+<div class="col-2 border">Fecha Termino</div>
 <div class="col-3 border">Tipo</div>
 <div class="col-3 border">Segmento</div>
 
@@ -57,13 +58,18 @@
 
 <div class="row" style="padding-top: 2px;">
 
-    <div class="col-3 border">{{evento.titulo}}</div>
-    <div class="col-1 border">{{evento.fecha_inicio}}</div>
+    <div class="col-2 border">{{evento.titulo}}</div>
+    <div class="col-2 border">{{evento.fecha_inicio}}</div>
     <div class="col-2 border">{{evento.fecha_termino}}</div>
     <div class="col-3 border">{{evento.tipo}}</div>
-    <div class="col-3 border">{{evento.segmento}}</div>
+    <div class="col-3 border">
+      {% for segmento in evento.segmento.all  %}
+      {{segmento}},
+      {% endfor %}
+    </div>
     
 </div>
 
 {% endfor %}
 </div>
+
