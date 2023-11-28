@@ -17,9 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from CER3 import views
-
+appname = 'kk'
 urlpatterns = [
-    path('',views.index,name="index"),
-    path('admin/', admin.site.urls),
-    path('api/', include('API.urls')),
+    path('',views.index,name='index'),
+    path('admin/', admin.site.urls, name='admin'),
+    path('api/', include('API.urls'),name = 'api'),
 ]
