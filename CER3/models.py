@@ -15,7 +15,7 @@ class Tipo(models.Model):
         return self.nombre
 
 class Evento (models.Model):
-    hit = models.IntegerField(default = 0)
+    
     fecha_inicio=models.DateField()
     fecha_termino=models.DateField()
     titulo=models.CharField(max_length=30, primary_key=True)

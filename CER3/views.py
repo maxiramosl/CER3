@@ -17,21 +17,15 @@ def index(request):
     if (evento_filtro == 'Tipo' or evento_filtro == None) and (segmento_filtro == 'Segmento' or segmento_filtro == None):
         evento = Evento.objects.all()
     elif(evento_filtro == 'Tipo' or evento_filtro == None) and (segmento_filtro != 'Segmento'):
-        lista = []
-        for evento in eventos:
-            hit = False
-            for segmento in evento.segmento.all:
-                if segmento==segmento_filtro:
-                    hit =True
-            if hit:
-                evento.hit = 1
+        a=1
+        
     
     
         
 
 
         
-        eventos = Evento.object.filter(hit ==1)
+
 
     data = {
         "segmentos":segmentos,
